@@ -177,3 +177,39 @@ export const triggerSelfDestruct = async (req: Request, res: Response) => { //po
     });
   }
 }
+
+export const getGadgetById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const gadget = await prisma.gadget.findUnique({
+      where: { id },
+      include: {
+        user: {
+          select: {
+            id: true,
+            email: true,
+          },
+        },
+      },
+    });
+
+    if (!gadget) {
+      return res.status(404).json({ message: 'Gadget not found' });
+    }
+
+    const formatted = {
+      id: gadget.id,
+      name: gadget.name,
+      status: gadget.status,
+      successRate: `${gadget.successRate.toFixed(2)}%`,
+      decommissionedAt: gadget.decommissionedAt,
+      user: gadget.user,
+    };
+
+    return res.status(200).json(formatted);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Server error fetching gadget' });
+  }
+};
