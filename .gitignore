@@ -23,5 +23,5 @@ yarn-error.log*
 # Build output
 dist/
 
-
+tests/
 usrs.txt
