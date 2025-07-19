@@ -27,6 +27,7 @@ export const signup = async (req: Request, res: Response) => {
       user: { id: newUser.id, email: newUser.email }
     });
   } catch (err) {
+    console.error('Signup error:', err);
     res.status(401).json({
       message: 'Signup failed: Invalid or missing fields',
     });
