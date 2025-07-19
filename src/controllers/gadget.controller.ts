@@ -127,10 +127,20 @@ export const updateGadget = async (req: Request, res: Response) => {  // PATCH /
   }
 };
 
-export const deleteGadget = async (req: Request, res: Response) => { // delete gadget/:id
+export const deleteGadget = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {
+    const existing = await prisma.gadget.findUnique({ where: { id } });
+
+    if (!existing) {
+      return res.status(404).json({ message: 'Gadget not found' });
+    }
+
+    if (existing.status === Status.Decommissioned) {
+      return res.status(400).json({ message: 'Gadget is already decommissioned' });
+    }
+
     const updated = await prisma.gadget.update({
       where: { id },
       data: {
@@ -151,6 +161,7 @@ export const deleteGadget = async (req: Request, res: Response) => { // delete g
     });
   }
 };
+
 
 
 export const triggerSelfDestruct = async (req: Request, res: Response) => { //post gadget/:id/self-destruct
