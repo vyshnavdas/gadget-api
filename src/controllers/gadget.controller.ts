@@ -79,31 +79,51 @@ export const getAllGadgets = async (req: Request, res: Response) => { // get /ga
   }
 };
 
-export const updateGadget = async (req: Request, res: Response) => {  // patch gadget/:id
+export const updateGadget = async (req: Request, res: Response) => {  // PATCH /gadget/:id
   const { id } = req.params;
   const { name, status, successRate } = req.body;
 
   const updateData: any = {};
-  if (name !== undefined) updateData.name = name;
-  if (status !== undefined) updateData.status = status;
-  if (successRate !== undefined) updateData.successRate = successRate;
 
-  console.log('Updating gadget with data:', updateData); // LOG THE OBJECT
+  if (name !== undefined) updateData.name = name;
+  if (status !== undefined) {
+    if (typeof status !== 'string' || !Object.values(Status).includes(status as Status)) {
+      return res.status(400).json({
+        message: `Invalid status. Valid options are: ${Object.values(Status).join(', ')}`,
+      });
+    }
+    updateData.status = status as Status;
+  }
+
+  if (successRate !== undefined) {
+    const rate = parseFloat(successRate);
+    if (isNaN(rate) || rate < 0 || rate > 100) {
+      return res.status(400).json({ message: 'Success rate must be a number between 0 and 100' });
+    }
+    updateData.successRate = rate;
+  }
 
   if (Object.keys(updateData).length === 0) {
     return res.status(400).json({ message: 'No valid fields provided for update' });
   }
 
   try {
+    console.log('Updating gadget with data:', updateData);
+
     const updated = await prisma.gadget.update({
       where: { id },
       data: updateData,
     });
 
-    res.json(updated);
+    return res.json(updated);
   } catch (error) {
     console.error('❌ Error updating gadget:', error);
-    res.status(500).json({ message: 'Error updating gadget'});
+
+    if ((error as any).code === 'P2025') {
+      return res.status(404).json({ message: 'Gadget not found' });
+    }
+
+    return res.status(500).json({ message: 'Error updating gadget' });
   }
 };
 
