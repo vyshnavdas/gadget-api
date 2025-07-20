@@ -9,7 +9,7 @@ const router = Router();
  * @swagger
  * /gadget:
  *   post:
- *     summary: Create a new gadget
+ *     summary: Create a new gadget with optional name, status, and successRate fields
  *     tags: [Gadget]
  *     security:
  *       - bearerAuth: []
@@ -58,7 +58,7 @@ router.post('/', authenticate, createGadget);
  *   get:
  *     summary: Retrieve a list of all gadgets
  *     tags:
- *       - Gadgets
+ *       - Gadget
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -114,7 +114,7 @@ router.get('/', authenticate,  getAllGadgets);
  *   get:
  *     summary: Get gadget details by ID
  *     tags:
- *       - Gadgets
+ *       - Gadget
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -169,7 +169,7 @@ router.get('/:id', authenticate, getGadgetById);
  *   patch:
  *     summary: Update gadget details
  *     tags:
- *       - Gadgets
+ *       - Gadget
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -222,7 +222,7 @@ router.patch('/:id', authenticate, checkJsonContentType, updateGadget);
  *     summary: Decommission a gadget
  *     description: Marks a gadget as Decommissioned and records the decommission timestamp.
  *     tags:
- *       - Gadgets
+ *       - Gadget
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -263,7 +263,7 @@ router.delete('/:id', authenticate, deleteGadget);
  *     summary: Trigger gadget self-destruct sequence
  *     description: Simulates the self-destruct sequence of a gadget. Requires a valid confirmation code as query parameter.
  *     tags:
- *       - Gadgets
+ *       - Gadget
  *     security:
  *       - bearerAuth: []
  *     parameters:
