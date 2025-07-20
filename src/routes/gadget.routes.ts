@@ -276,7 +276,7 @@ router.delete('/:id', authenticate, deleteGadget);
  *           format: uuid
  *       - in: query
  *         name: code
- *         required: true
+ *         required: false
  *         description: Confirmation code to authorize the self-destruct
  *         schema:
  *           type: string
