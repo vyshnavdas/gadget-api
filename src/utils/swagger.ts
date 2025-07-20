@@ -28,6 +28,7 @@ const options = {
           properties: {
             id: { type: 'string', format: 'uuid' },
             email: { type: 'string', format: 'email' },
+            gadgets:  {$ref: '#/components/schemas/Gadget'},
           },
         },
         Gadget: {

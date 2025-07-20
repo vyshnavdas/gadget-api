@@ -10,8 +10,7 @@ const router = Router();
  * /gadget:
  *   post:
  *     summary: Create a new gadget
- *     tags:
- *       - Gadgets
+ *     tags: [Gadget]
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -23,10 +22,21 @@ const router = Router();
  *             properties:
  *               name:
  *                 type: string
- *                 example: Laser Pen
+ *                 description: Optional custom name/codename for the gadget
+ *                 example: "The Falcon"
+ *               status:
+ *                 type: string
+ *                 enum: [Available, Deployed, Destroyed, Decommissioned]
+ *                 description: Optional status for the gadget
+ *                 example: Available
+ *               successRate:
+ *                 type: number
+ *                 format: float
+ *                 description: Optional mission success rate (60–100)
+ *                 example: 82.5
  *     responses:
  *       201:
- *         description: Gadget created successfully
+ *         description: Gadget successfully created
  *         content:
  *           application/json:
  *             schema:
@@ -36,27 +46,9 @@ const router = Router();
  *                   type: string
  *                   example: Gadget created
  *                 gadget:
- *                   type: object
- *                   properties:
- *                     id:
- *                       type: string
- *                       format: uuid
- *                     name:
- *                       type: string
- *                     status:
- *                       type: string
- *                     successRate:
- *                       type: number
- *                     decommissionedAt:
- *                       type: string
- *                       format: date-time
- *                       nullable: true
- *                     userId:
- *                       type: string
- *       401:
- *         description: Unauthorized (missing or invalid token)
+ *                   $ref: '#/components/schemas/Gadget'
  *       500:
- *         description: Server error
+ *         description: Internal server error
  */
 router.post('/', authenticate, createGadget);
 
