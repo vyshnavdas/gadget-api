@@ -27,10 +27,10 @@ const router = Router();
  *             properties:
  *               email:
  *                 type: string
- *                 example: ethan@imf.gov
+ *                 example: email@email.com
  *               password:
  *                 type: string
- *                 example: mission123
+ *                 example: password
  *     responses:
  *       201:
  *         description: User created successfully
@@ -61,10 +61,10 @@ router.post('/signup', checkJsonContentType, signupRateLimiter, signup);
  *             properties:
  *               email:
  *                 type: string
- *                 example: ethan@imf.gov
+ *                 example: email@email.com
  *               password:
  *                 type: string
- *                 example: mission123
+ *                 example: password
  *     responses:
  *       200:
  *         description: Successful login, returns JWT token
