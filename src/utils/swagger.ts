@@ -22,6 +22,34 @@ const options = {
           bearerFormat: 'JWT',
         },
       },
+      schemas: {
+        User: {
+          type: 'object',
+          properties: {
+            id: { type: 'string', format: 'uuid' },
+            email: { type: 'string', format: 'email' },
+          },
+        },
+        Gadget: {
+          type: 'object',
+          properties: {
+            id: { type: 'string', format: 'uuid' },
+            name: { type: 'string' },
+            status: {
+              type: 'string',
+              enum: ['Available', 'Deployed', 'Destroyed', 'Decommissioned'],
+            },
+            successRate: { type: 'number', format: 'float' },
+            decommissionedAt: {
+              type: 'string',
+              format: 'date-time',
+              nullable: true,
+            },
+            userId: { type: 'string', format: 'uuid' },
+            user: { $ref: '#/components/schemas/User' },
+          },
+        },
+      },
     },
     security: [
       {
