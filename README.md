@@ -140,6 +140,7 @@ POST /gadgets/{id}/self-destruct
   "code": "637756"
 }
 ```
+###  **Re-send with confirmation code**
 ```http
 POST /gadgets/{id}/self-destruct?code=637756
 ```
