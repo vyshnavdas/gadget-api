@@ -36,6 +36,7 @@ const options = {
           properties: {
             id: { type: 'string', format: 'uuid' },
             name: { type: 'string' },
+            codeName: {type: 'string'},
             status: {
               type: 'string',
               enum: ['Available', 'Deployed', 'Destroyed', 'Decommissioned'],
