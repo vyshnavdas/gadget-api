@@ -23,6 +23,7 @@ model User {
 model Gadget {
   id               String   @id @default(uuid())
   name             String
+  codeName         String @unique
   status           Status   @default(Available)
   decommissionedAt DateTime? 
   userId           String

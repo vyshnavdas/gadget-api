@@ -16,11 +16,10 @@ export const createGadget = async (req: Request, res: Response) => {
     const user = (req as any).user;
     const userId = user?.id;
 
-    // Pull optional fields from the request body
     const { name, status, successRate } = req.body;
 
-    // Fallbacks
-    const codename = name || generateCodename();
+    const finalName = typeof name === 'string' && name.trim() !== '' ? name : 'Unnamed Gadget';
+
     const finalStatus =
       typeof status === 'string' &&
       ['Available', 'Deployed', 'Destroyed', 'Decommissioned'].includes(status)
@@ -30,11 +29,14 @@ export const createGadget = async (req: Request, res: Response) => {
     const finalSuccessRate =
       typeof successRate === 'number'
         ? successRate
-        : parseFloat((Math.random() * 40 + 60).toFixed(2)); // 60% to 100%
+        : parseFloat((Math.random() * 40 + 60).toFixed(2));
+
+    let codeName = await generateCodename();
 
     const gadget = await prisma.gadget.create({
       data: {
-        name: codename,
+        name: finalName,
+        codeName,
         userId,
         status: finalStatus as Status,
         successRate: finalSuccessRate,
@@ -47,7 +49,6 @@ export const createGadget = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
-
 
 export const getAllGadgets = async (req: Request, res: Response) => { // get /gadget
   try {

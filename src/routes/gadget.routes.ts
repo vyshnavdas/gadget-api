@@ -9,12 +9,12 @@ const router = Router();
  * @swagger
  * /gadget:
  *   post:
- *     summary: Create a new gadget with optional name, status, and successRate fields
+ *     summary: Create a new gadget with name, and optional status & successRate fields
  *     tags: [Gadget]
  *     security:
  *       - bearerAuth: []
  *     requestBody:
- *       required: false
+ *       required: ture
  *       content:
  *         application/json:
  *           schema:
@@ -22,7 +22,7 @@ const router = Router();
  *             properties:
  *               name:
  *                 type: string
- *                 description: Optional custom name/codename for the gadget
+ *                 description: Custom name for the gadget
  *                 example: "The Falcon"
  *               status:
  *                 type: string
