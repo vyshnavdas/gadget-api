@@ -24,6 +24,7 @@ The **IMF Gadget API** is a RESTful service that allows managing and tracking hi
 
 ---
 ## 📁Folder Structure
+```
 gadget-api/
 ├── .env.example
 ├── .gitignore
@@ -49,6 +50,7 @@ gadget-api/
     └── utils/
         ├── generateCodename.ts
         └── swagger.ts
+```
 ---
 
 ## 🔥 API Endpoints
