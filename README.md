@@ -218,19 +218,7 @@ npm install
 Generate Prisma client:
 
 ```bash
-npx prisma generate
-```
-
-Run database migrations:
-
-```bash
 npx prisma migrate dev --name init
-```
-
-To apply migrations without creating a new one (e.g., in production):
-
-```bash
-npx prisma migrate deploy
 ```
 
 ---
@@ -268,7 +256,7 @@ This runs `dist/index.js` (compiled output).
 Once the server is running, access the Swagger UI at:
 
 ```
-http://localhost:3000/api-docs
+https://gadget-api-pf2a.onrender.com/docs/
 ```
 
 It includes:
