@@ -206,7 +206,6 @@ export const triggerSelfDestruct = async (req: Request, res: Response) => { //po
       where: { id },
       data: {
         status: Status.Destroyed,
-        decommissionedAt: new Date(),
       },
     });
 
@@ -214,7 +213,7 @@ export const triggerSelfDestruct = async (req: Request, res: Response) => { //po
     confirmationCodes.delete(id);
 
     return res.status(200).json({
-      message: 'Gadget successfully decommissioned',
+      message: 'Gadget successfully Destroyed',
       gadget,
     });
   } catch (error) {
