@@ -23,6 +23,33 @@ The **IMF Gadget API** is a RESTful service that allows managing and tracking hi
 - ✅ **Trigger self-destruct sequence**
 
 ---
+## 📁Folder Structure
+gadget-api/
+├── .env.example
+├── .gitignore
+├── package.json
+├── tsconfig.json
+├── README.md
+├── prisma/
+│   └── schema.prisma
+└── src/
+    ├── index.ts
+    ├── config/
+    │   └── prisma.ts
+    ├── controllers/
+    │   ├── auth.controller.ts
+    │   └── gadget.controller.ts
+    ├── middleware/
+    │   └── auth.middleware.ts
+    ├── routes/
+    │   ├── auth.routes.ts
+    │   └── gadget.routes.ts
+    ├── types/
+    │   └── express.d.ts
+    └── utils/
+        ├── generateCodename.ts
+        └── swagger.ts
+---
 
 ## 🔥 API Endpoints
 
