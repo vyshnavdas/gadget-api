@@ -256,7 +256,7 @@ This runs `dist/index.js` (compiled output).
 Once the server is running, access the Swagger UI at:
 
 ```
-https://gadget-api-pf2a.onrender.com/docs/
+BASE_URL/docs/
 ```
 
 It includes:
