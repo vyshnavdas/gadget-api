@@ -16,7 +16,7 @@ The **IMF Gadget API** is a RESTful service that allows managing and tracking hi
 
 ## ⚙️ Features
 - ✅ **Filter gadgets by status (`Available`, `Destroyed`, `Deployed`, `Decommissioned`)**
-- ✅ **Reterive gadgets by their id
+- ✅ **Reterive gadgets by their id**
 - ✅ **Add new gadgets**
 - ✅ **Update gadget status**
 - ✅ **Decommission gadgets instead of deleting them**
