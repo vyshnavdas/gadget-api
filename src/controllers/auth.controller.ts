@@ -61,3 +61,14 @@ export const loginRateLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
 });
+
+
+export const signupRateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 3, // limit each IP to 3 signup requests per windowMs
+  message: {
+    message: 'Too many signup attempts. Please try again later.',
+  },
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false,
+});
