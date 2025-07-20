@@ -42,6 +42,7 @@ GET /gadgets?status=Available
   {
     "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
     "name": "string",
+    "codeName": "string",
     "status": "string",
     "successRate": "85.30%",
     "decommissionedAt": "2025-07-20T10:53:55.613Z",
@@ -68,10 +69,16 @@ POST /gadgets
 #### 📌 **Response**
 ```json
 {
-    "id": "67890",
+  "message": "Gadget created",
+  "gadget": {
+    "id": "b00a96ca-73c5-45d2-9a8b-64cac075965c",
     "name": "VR Headset",
-    "codename": "Code-abc123",
-    "status": "Available"
+    "codeName": "The Merciless",
+    "status": "Available",
+    "decommissionedAt": null,
+    "userId": "97ba4038-7c9c-44c5-8de5-f0836e07e353",
+    "successRate": 71.67
+  }
 }
 ```
 
@@ -141,7 +148,7 @@ POST /gadgets/{id}/self-destruct
 ### **1️⃣ Clone the Repository**
 ```sh
 git clone {repo link}
-cd IMF
+cd gadget-api
 ```
 
 ### **2️⃣ Install Dependencies**
@@ -153,12 +160,14 @@ npm install
 Create a **`.env`** file and add:
 ```ini
 PORT=3000
-DATABASE_URL=postgres://postgres:sike@localhost:5432/imf_gadgets
+DATABASE_URL=postgres://username:password@localhost:5432/gadget-api
+JWT_SECRET=supersecretkey
 ```
 
 ### **4️⃣ Run the API**
 ```sh
-npm run dev
+npm run build
+npm run start
 ```
 ✅ Server will start at **`http://localhost:3000`**.
 
@@ -166,9 +175,9 @@ npm run dev
 
 ## 🏗️ **Tech Stack**
 - **Backend:** Node.js, Express.js
-- **Database:** PostgreSQL, Sequelize ORM
+- **Database:** PostgreSQL, Prisma ORM
 - **Hosting:** Render
-- **API Documentation:** Postman
+- **API Documentation:** Swagger
 
 ---
 
